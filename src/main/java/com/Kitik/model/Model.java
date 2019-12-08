@@ -41,7 +41,7 @@ public class Model {
             FileOutputStream fo = new FileOutputStream(
                     "C:\\Users\\MyFantasy\\IdeaProjects"
                             + "\\task3_oop\\data.txt\\");
-            GetFromFile get = new GetFromFile(mobileOperatorList, cellPhoneList);
+            GetFromFile get = new GetFromFile(mobileOperatorList);
             ObjectOutputStream serial = new ObjectOutputStream(fo);
             serial.writeObject(get);
             fo.close();
