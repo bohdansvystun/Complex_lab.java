@@ -1,7 +1,6 @@
 package com.Kitik.model.Network;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class CellPhone implements Serializable {
     private String name;
@@ -16,6 +15,7 @@ public class CellPhone implements Serializable {
         this.number = number;
         this.tariff = tariff;
     }
+
 
 
     public String getName() {

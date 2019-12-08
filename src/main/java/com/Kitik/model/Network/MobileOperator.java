@@ -9,8 +9,15 @@ import java.util.Arrays;
 
 public class MobileOperator implements Serializable {
     private String name;
-    private List<CellPhone> client = new ArrayList<CellPhone>();
-    private List tariff;
+    private List<CellPhone> client;
+    private List<Tariff> tariff;
+
+    public MobileOperator(String name, List<CellPhone> client, List<Tariff> tariff) {
+        this.name = name;
+        this.client = client;
+        this.tariff = tariff;
+    }
+
 
     public String getName() {
         return name;
@@ -28,11 +35,11 @@ public class MobileOperator implements Serializable {
         this.client = client;
     }
 
-    public List getTariff() {
+    public List<Tariff> getTariff() {
         return tariff;
     }
 
-    public void setTariff(List tariff) {
+    public void setTariff(List<Tariff> tariff) {
         this.tariff = tariff;
     }
 
@@ -40,11 +47,6 @@ public class MobileOperator implements Serializable {
         return client.size();
     }
 
-    public MobileOperator(String name, List<CellPhone> client, List tariff) {
-        this.name = name;
-        this.client = client;
-        this.tariff = tariff;
-    }
 
     public void showClient(){
         System.out.println(client);

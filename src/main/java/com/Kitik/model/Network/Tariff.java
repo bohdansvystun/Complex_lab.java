@@ -1,15 +1,58 @@
 package com.Kitik.model.Network;
 
-public enum Tariff {
-    SUPERNET(90, 7, 90), UNLIM4G(150, 20, 60);
+import java.io.Serializable;
 
+public class Tariff implements Serializable {
+    private String nameTariff;
     private int price;
     private int volumeInternet;
     private int countMinutes;
 
-    Tariff(int price, int volumeInternet, int countMinutes) {
+    public Tariff(String nameTariff, int price, int volumeInternet, int countMinutes) {
+        this.nameTariff=nameTariff;
         this.price = price;
         this.volumeInternet = volumeInternet;
         this.countMinutes = countMinutes;
+    }
+
+    public String getNameTariff() {
+        return nameTariff;
+    }
+
+    public void setNameTariff(String nameTariff) {
+        this.nameTariff = nameTariff;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getVolumeInternet() {
+        return volumeInternet;
+    }
+
+    public void setVolumeInternet(int volumeInternet) {
+        this.volumeInternet = volumeInternet;
+    }
+
+    public int getCountMinutes() {
+        return countMinutes;
+    }
+
+    public void setCountMinutes(int countMinutes) {
+        this.countMinutes = countMinutes;
+    }
+
+    @Override
+    public String toString() {
+        return "Tariff{" +
+                "price=" + price +
+                ", volumeInternet=" + volumeInternet +
+                ", countMinutes=" + countMinutes +
+                '}';
     }
 }

@@ -1,12 +1,8 @@
 package com.Kitik.controller;
 
 import com.Kitik.model.Model;
-import com.Kitik.model.Network.CellPhone;
-import com.Kitik.model.Network.GetFromFile;
 import com.Kitik.model.Network.MobileOperator;
-import com.Kitik.model.Network.Tariff;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,4 +26,15 @@ public class Controller {
         model.showCellPhones();
     }
 
+    public final int showCountClient(){
+       return model.showCountClient();
+    }
+
+    public final int showCountClientInMobileOperator(String nameOperator){
+        return model.showCountClientInMobileOperator(nameOperator);
+    }
+
+    public final void addTarifftoTheOperator(String nameTariff, int priceTariff, int volumeInternet, int countMinutes){
+        model.addTarifftoTheOperator(nameTariff, priceTariff, volumeInternet, countMinutes);
+    }
 }
