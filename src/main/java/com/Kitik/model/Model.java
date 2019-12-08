@@ -59,6 +59,7 @@ public class Model {
     }
 
     public final void showCellPhones(){
+        System.out.println(cellPhoneList);
     }
 }
 
