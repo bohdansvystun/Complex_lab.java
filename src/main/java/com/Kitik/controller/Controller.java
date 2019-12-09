@@ -45,13 +45,13 @@ public class Controller {
     }
 
 
-    public final List<Tariff> sortByCostOperator(String name){
+    public final List<Tariff> sortByCostOperator(String name) {
         return model.sortByCostOperator(name);
     }
 
-    public final void searchTariff(int cost, String name){
+    public final void searchTariff(int cost, String name) {
         model.searchTariffByCost(cost);
         System.out.println(" ");
-      //  model.searchTariffByCostOperator(cost, name);
+        //  model.searchTariffByCostOperator(cost, name);
     }
 }

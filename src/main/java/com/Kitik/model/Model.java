@@ -36,10 +36,10 @@ public class Model {
 
             mobileOperatorList = get.getForFile();
             fin.close();
-            // initCellPhoneList();
-            /*for (MobileOperator m : mobileOperatorList) {
-                tariffList.addAll(m.readTariffFromFile());
-            }*/
+
+            for (MobileOperator m : mobileOperatorList) {
+                m.readTariffFromFile();
+            }
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         } catch (IOException e) {
