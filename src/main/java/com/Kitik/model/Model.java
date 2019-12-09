@@ -33,10 +33,8 @@ public class Model {
                     "C:\\Users\\MyFantasy\\IdeaProjects\\Kolya_Task\\data.txt");
             ObjectInputStream ois = new ObjectInputStream(fin);
             GetFromFile get = (GetFromFile) ois.readObject();
-
             mobileOperatorList = get.getForFile();
             fin.close();
-
             for (MobileOperator m : mobileOperatorList) {
                 m.readTariffFromFile();
             }
@@ -54,8 +52,9 @@ public class Model {
     }
 
     public final List<CellPhone> getCellPhoneList() {
-        return mobileOperator.getClient();
-    }
+            return mobileOperator.getClient();
+        }
+
 
     public final String writeToTheFile(MobileOperator mobileOperator) {
         try {
@@ -88,18 +87,19 @@ public class Model {
 
 
     public final List<Tariff> showTariffList() {
-        return tariffList = getTariffList();
+        return tariffList;
     }
 
     public final List<CellPhone> showCellPhones() {
-        cellPhoneList = getCellPhoneList();
-        System.out.println(cellPhoneList);
-        return cellPhoneList;
+        List<CellPhone> cellPhones = new ArrayList<>();
+        for (MobileOperator m : mobileOperatorList){
+            cellPhones.addAll(m.getClient());
+        }
+        return cellPhones;
     }
 
     public int showCountClient() {
-        cellPhoneList = mobileOperator.getClient();
-        return cellPhoneList.size();
+       return showCellPhones().size();
     }
 
 
@@ -114,9 +114,18 @@ public class Model {
     }
 
 
-/*
+
+    public List<Tariff> returnAllTariff(){
+        List<Tariff> tariffList = new ArrayList<>();
+        for (MobileOperator m : mobileOperatorList){
+            tariffList.addAll(m.getTariff());
+        }
+        return tariffList;
+    }
+
+
     public final void sortByCost() {
-        Collections.sort(tariffList, new Comparator<Tariff>() {
+        Collections.sort(tariffList = returnAllTariff(), new Comparator<Tariff>() {
             @Override
             public int compare(final Tariff lhs, final Tariff rhs) {
                 return lhs.getPrice() > rhs.getPrice() ? -1
@@ -124,14 +133,14 @@ public class Model {
             }
         });
     }
-  */
+
 
     public final List<Tariff> sortByCostOperator(String nameOperator) {
         List<Tariff> tariffListByOperator = new ArrayList<>();
         boolean flag = true;
         for (MobileOperator m : mobileOperatorList) {
             if ((m.getName().equals(nameOperator)) && flag) {
-                tariffListByOperator = getTariffList();
+                tariffListByOperator = returnAllTariff();
                 flag = false;
             }
             Collections.sort(tariffListByOperator, new Comparator<Tariff>() {
@@ -144,24 +153,9 @@ public class Model {
         }
         return tariffListByOperator;
     }
-/*
-    public void renewTariffList() {
-        tariffList = new ArrayList<>();
-        List<MobileOperator> mobileOperatorListU = mobileOperatorList;
-        List<MobileOperator> uniqueMobile =
-                mobileOperatorListU
-                        .stream()
-                        .distinct()
-                        .collect(Collectors.toList());
-
-        for (MobileOperator m : uniqueMobile) {
-            tariffList.addAll(m.readTariffFromFile());
-        }
-    }
-    */
 
     public void searchTariffByCost(int cost) {
-        // renewTariffList();
+
         boolean flag = true;
         boolean flagok = false;
         for (Tariff tariff : tariffList) {

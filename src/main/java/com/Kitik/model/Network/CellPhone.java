@@ -36,11 +36,10 @@ public class CellPhone implements Serializable {
 
     @Override
     public String toString() {
-        return "CellPhone{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", number=" + number +
-                ", tariff=" + tariff +
-                '}';
+        return "\nClient" +
+                "name: " + name  +
+                ", surname: " + surname +
+                ", number: " + number +
+                ", tariff: " + tariff;
     }
 }

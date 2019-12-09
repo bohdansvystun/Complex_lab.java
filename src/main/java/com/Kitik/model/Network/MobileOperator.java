@@ -75,10 +75,9 @@ public class MobileOperator implements Serializable {
 
     @Override
     public String toString() {
-        return "MobileOperator{" +
-                "name='" + name + '\'' +
-                ", client=" + client +
-                ", tariff=" + tariff +
-                '}';
+        return "\nMobileOperator: " +
+                "name: " + name  +
+                "\nclient:" + client +
+                "\ntariffs: " + tariff +"\n";
     }
 }

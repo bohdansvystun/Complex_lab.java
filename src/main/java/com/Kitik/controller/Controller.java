@@ -48,7 +48,13 @@ public class Controller {
     public final List<Tariff> sortByCostOperator(String name) {
         return model.sortByCostOperator(name);
     }
+    public final void sortByCost(){
+        model.sortByCost();
+    }
 
+    public final List<Tariff> showTariff(){
+        return model.returnAllTariff();
+    }
     public final void searchTariff(int cost, String name) {
         model.searchTariffByCost(cost);
         System.out.println(" ");

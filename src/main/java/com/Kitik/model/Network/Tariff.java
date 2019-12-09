@@ -49,11 +49,10 @@ public class Tariff {
 
     @Override
     public String toString() {
-        return "Tariff{" +
-                "nameTariff='" + nameTariff + '\'' +
-                ", price=" + price +
-                ", volumeInternet=" + volumeInternet +
-                ", countMinutes=" + countMinutes +
-                '}';
+        return "\nTariff" +
+                "nameTariff: " + nameTariff +
+                ", price: " + price +
+                ", volumeInternet: " + volumeInternet +
+                ", countMinutes: " + countMinutes;
     }
 }

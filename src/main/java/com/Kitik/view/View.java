@@ -70,9 +70,10 @@ public class View {
     }
 
     private void pressButton7() {
-        logger.trace("Enter name operator");
-        String name = input.nextLine();
-        logger.info(controller.sortByCostOperator(name));
+        //logger.trace("Enter name operator");
+        //String name = input.nextLine();
+        controller.sortByCost();
+        logger.info(controller.showTariffList());
     }
 
     private void pressButton8() {
