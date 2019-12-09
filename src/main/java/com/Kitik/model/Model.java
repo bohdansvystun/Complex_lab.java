@@ -52,13 +52,27 @@ public class Model {
     }
 
     public final List<CellPhone> getCellPhoneList() {
-            return mobileOperator.getClient();
-        }
+        return mobileOperator.getClient();
+    }
 
 
     public final String writeToTheFile(MobileOperator mobileOperator) {
         try {
-            mobileOperatorList.add(mobileOperator);
+            //mobileOperatorList.add(mobileOperator);
+
+            int count = 0;
+
+            for (MobileOperator m : mobileOperatorList) {
+                if (m.getName().equals(mobileOperator.getName())) {
+                    m.addClient(mobileOperator.getClient());
+                    count++;
+                }
+            }
+
+
+            if (count == 0) {
+                mobileOperatorList.add(mobileOperator);
+            }
             FileOutputStream fo = new FileOutputStream(
                     "C:\\Users\\MyFantasy\\IdeaProjects\\Kolya_Task\\data.txt");
             GetFromFile get = new GetFromFile(mobileOperatorList);
@@ -92,14 +106,14 @@ public class Model {
 
     public final List<CellPhone> showCellPhones() {
         List<CellPhone> cellPhones = new ArrayList<>();
-        for (MobileOperator m : mobileOperatorList){
+        for (MobileOperator m : mobileOperatorList) {
             cellPhones.addAll(m.getClient());
         }
         return cellPhones;
     }
 
     public int showCountClient() {
-       return showCellPhones().size();
+        return showCellPhones().size();
     }
 
 
@@ -107,23 +121,33 @@ public class Model {
         int count = 0;
         for (MobileOperator m : mobileOperatorList) {
             if (m.getName().equals(nameMobileOpeator)) {
-                count++;
+                count =m.getClient().size();
             }
         }
+
         return count;
     }
 
 
-
-    public List<Tariff> returnAllTariff(){
+    public List<Tariff> returnAllTariff() {
         List<Tariff> tariffList = new ArrayList<>();
-        for (MobileOperator m : mobileOperatorList){
+        for (MobileOperator m : mobileOperatorList) {
             tariffList.addAll(m.getTariff());
         }
         return tariffList;
     }
 
+    public List<Tariff> returnTariffbyOperator(String name) {
+        List<Tariff> tariffList = new ArrayList<>();
+        for (MobileOperator m : mobileOperatorList) {
+            if (m.getName().equals(name))
+                tariffList.addAll(m.getTariff());
+        }
+        System.out.println(tariffList + "I'm here");
+        return tariffList;
+    }
 
+/*
     public final void sortByCost() {
         Collections.sort(tariffList = returnAllTariff(), new Comparator<Tariff>() {
             @Override
@@ -133,16 +157,10 @@ public class Model {
             }
         });
     }
-
+*/
 
     public final List<Tariff> sortByCostOperator(String nameOperator) {
-        List<Tariff> tariffListByOperator = new ArrayList<>();
-        boolean flag = true;
-        for (MobileOperator m : mobileOperatorList) {
-            if ((m.getName().equals(nameOperator)) && flag) {
-                tariffListByOperator = returnAllTariff();
-                flag = false;
-            }
+        List<Tariff> tariffListByOperator = returnTariffbyOperator(nameOperator);
             Collections.sort(tariffListByOperator, new Comparator<Tariff>() {
                 @Override
                 public int compare(final Tariff lhs, final Tariff rhs) {
@@ -150,46 +168,39 @@ public class Model {
                             : (lhs.getPrice() < rhs.getPrice()) ? 1 : 0;
                 }
             });
-        }
         return tariffListByOperator;
     }
 
-    public void searchTariffByCost(int cost) {
-
-        boolean flag = true;
-        boolean flagok = false;
-        for (Tariff tariff : tariffList) {
-            if ((tariff.getPrice() < 50)) {
-                logger.info(tariff);
-                flagok = true;
+    /*
+        public void searchTariffByCost(int cost) {
+            boolean flag = true;
+            boolean flagok = false;
+            tariffList = returnAllTariff();
+            for (Tariff tariff : tariffList) {
+                if ((tariff.getPrice() < cost)) {
+                    logger.info(tariff);
+                    flagok = true;
+                }
             }
-
+            if (!flagok) {
+                logger.error("Tariff not found");
+            }
         }
-        if (!flagok) {
-            logger.error("Tariff not found");
-        }
-    }
-
+        */
     public void searchTariffByCostOperator(int cost, String nameOperator) {
-        //renewTariffList();
         boolean flag = true;
-        List<Tariff> tariffListByOperator = new ArrayList<>();
-        for (MobileOperator m : mobileOperatorList) {
-            if ((m.getName().equals(nameOperator)) && flag) {
-                tariffListByOperator.addAll(mobileOperator.getTariff());
-                flag = false;
-            }
-        }
-        flag = true;
+        List<Tariff> tariffListByOperator = returnTariffbyOperator(nameOperator);
         for (Tariff tariff : tariffListByOperator) {
-            if (tariff.getPrice() < cost) {
+            if ((tariff.getPrice() < cost)) {
                 logger.info(tariff);
-                flag = false;
+                flag = true;
             }
         }
-        if (flag) {
+        if (!flag) {
             logger.error("Tariff not found");
         }
     }
 }
+
+
 

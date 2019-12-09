@@ -25,7 +25,7 @@ public class View {
         menu.put("5", "  5 - getCountByOperator");
         menu.put("6", "  6 - showMobileOperator");
         menu.put("7", "  7 - showAndSortTariffByCostOperator");
-        menu.put("8", "  8 - showAndSortTariffByCostOperator");
+        menu.put("8", "  8 - ReturnTariffByCostOperator");
         menu.put("9", "  9 - toTheFile");
         menu.put("Q", "  Q - exit");
 
@@ -70,10 +70,10 @@ public class View {
     }
 
     private void pressButton7() {
-        //logger.trace("Enter name operator");
-        //String name = input.nextLine();
-        controller.sortByCost();
-        logger.info(controller.showTariffList());
+        logger.trace("Enter name operator");
+        String name = input.nextLine();
+        logger.info(controller.sortByCostOperator(name));
+
     }
 
     private void pressButton8() {

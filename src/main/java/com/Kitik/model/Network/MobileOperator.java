@@ -66,12 +66,15 @@ public class MobileOperator implements Serializable {
                 tariff.add(new Tariff(name, price, volumeInternet, countOfMinutes));
             }
 
+
         } catch (FileNotFoundException e) {
             System.out.println(e);
         }
     }
 
-
+    public void addClient(List<CellPhone> cellPhones){
+        client.addAll(cellPhones);
+    }
 
     @Override
     public String toString() {
