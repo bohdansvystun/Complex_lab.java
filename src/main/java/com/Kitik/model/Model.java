@@ -4,93 +4,198 @@ import com.Kitik.model.Network.CellPhone;
 import com.Kitik.model.Network.GetFromFile;
 import com.Kitik.model.Network.MobileOperator;
 import com.Kitik.model.Network.Tariff;
+import com.Kitik.view.View;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Model {
     private List<MobileOperator> mobileOperatorList;
     private List<CellPhone> cellPhoneList;
+    public static Logger logger;
     private List<Tariff> tariffList;
+    MobileOperator mobileOperator;
 
     public Model() {
         mobileOperatorList = new ArrayList<>();
         cellPhoneList = new ArrayList<>();
-        tariffList = new ArrayList<>(tariffList);
+        logger = LogManager.getLogger(View.class);
+        tariffList = new ArrayList<>();
+
     }
 
-    public final void addTarifftoTheOperator(String nameTariff, int priceTariff, int volumeInternet, int countMinutes){
-        tariffList.add(new Tariff(nameTariff, priceTariff, volumeInternet, countMinutes));
-    }
-
-    public final void getFromFile() {
+    public final String getFromFile() {
         try {
             FileInputStream fin = new FileInputStream(
-                    "C:\\Users\\MyFantasy\\IdeaProjects"
-                            + "\\task3_oop\\data.txt\\");
+                    "C:\\Users\\MyFantasy\\IdeaProjects\\Kolya_Task\\data.txt");
             ObjectInputStream ois = new ObjectInputStream(fin);
             GetFromFile get = (GetFromFile) ois.readObject();
 
             mobileOperatorList = get.getForFile();
             fin.close();
-            System.out.println("Success!");
-            initCellPhoneList();
+            // initCellPhoneList();
+            /*for (MobileOperator m : mobileOperatorList) {
+                tariffList.addAll(m.readTariffFromFile());
+            }*/
         } catch (ClassNotFoundException ex) {
             System.out.println(ex);
         } catch (IOException e) {
             System.out.println(e);
         }
+
+        return "Success!";
     }
 
-    public final void writeToTheFile(MobileOperator mobileOperator) {
+    public final List<Tariff> getTariffList() {
+        return mobileOperator.getTariff();
+    }
+
+    public final List<CellPhone> getCellPhoneList() {
+        return mobileOperator.getClient();
+    }
+
+    public final String writeToTheFile(MobileOperator mobileOperator) {
         try {
             mobileOperatorList.add(mobileOperator);
             FileOutputStream fo = new FileOutputStream(
-                    "C:\\Users\\MyFantasy\\IdeaProjects"
-                            + "\\task3_oop\\data.txt\\");
+                    "C:\\Users\\MyFantasy\\IdeaProjects\\Kolya_Task\\data.txt");
             GetFromFile get = new GetFromFile(mobileOperatorList);
             ObjectOutputStream serial = new ObjectOutputStream(fo);
             serial.writeObject(get);
             fo.close();
-            System.out.println("You wrote to the file");
         } catch (Exception e) {
-            System.out.println("Error");
-            System.out.println(e);
+            logger.trace(e);
+            e.printStackTrace();
         }
+        return "You wrote to the file";
+    }
+
+    public final List<MobileOperator> showMobileOperator() {
+        return mobileOperatorList;
 
     }
 
-    public final void showMobileOperator() {
-        System.out.println(mobileOperatorList);
-        System.out.println(" ");
-    }
-
-    public final void initCellPhoneList() {
+    public void showMobileOperatorByName(String name) {
         for (MobileOperator m : mobileOperatorList) {
-            for (CellPhone s : m.getClient()) {
-                cellPhoneList.add(s);
+            if (m.getName().equals(name)) {
+                logger.info(m);
             }
-
         }
     }
 
-    public final void showCellPhones() {
+
+    public final List<Tariff> showTariffList() {
+        return tariffList = getTariffList();
+    }
+
+    public final List<CellPhone> showCellPhones() {
+        cellPhoneList = getCellPhoneList();
         System.out.println(cellPhoneList);
+        return cellPhoneList;
     }
 
     public int showCountClient() {
+        cellPhoneList = mobileOperator.getClient();
         return cellPhoneList.size();
     }
 
+
     public int showCountClientInMobileOperator(String nameMobileOpeator) {
         int count = 0;
-        for (MobileOperator m : mobileOperatorList){
-            if (m.getName().equals(nameMobileOpeator)){
-               count++;
+        for (MobileOperator m : mobileOperatorList) {
+            if (m.getName().equals(nameMobileOpeator)) {
+                count++;
             }
         }
         return count;
+    }
+
+
+/*
+    public final void sortByCost() {
+        Collections.sort(tariffList, new Comparator<Tariff>() {
+            @Override
+            public int compare(final Tariff lhs, final Tariff rhs) {
+                return lhs.getPrice() > rhs.getPrice() ? -1
+                        : (lhs.getPrice() < rhs.getPrice()) ? 1 : 0;
+            }
+        });
+    }
+  */
+
+    public final List<Tariff> sortByCostOperator(String nameOperator) {
+        List<Tariff> tariffListByOperator = new ArrayList<>();
+        boolean flag = true;
+        for (MobileOperator m : mobileOperatorList) {
+            if ((m.getName().equals(nameOperator)) && flag) {
+                tariffListByOperator = getTariffList();
+                flag = false;
+            }
+            Collections.sort(tariffListByOperator, new Comparator<Tariff>() {
+                @Override
+                public int compare(final Tariff lhs, final Tariff rhs) {
+                    return lhs.getPrice() > rhs.getPrice() ? -1
+                            : (lhs.getPrice() < rhs.getPrice()) ? 1 : 0;
+                }
+            });
+        }
+        return tariffListByOperator;
+    }
+/*
+    public void renewTariffList() {
+        tariffList = new ArrayList<>();
+        List<MobileOperator> mobileOperatorListU = mobileOperatorList;
+        List<MobileOperator> uniqueMobile =
+                mobileOperatorListU
+                        .stream()
+                        .distinct()
+                        .collect(Collectors.toList());
+
+        for (MobileOperator m : uniqueMobile) {
+            tariffList.addAll(m.readTariffFromFile());
+        }
+    }
+    */
+
+    public void searchTariffByCost(int cost) {
+        // renewTariffList();
+        boolean flag = true;
+        boolean flagok = false;
+        for (Tariff tariff : tariffList) {
+            if ((tariff.getPrice() < 50)) {
+                logger.info(tariff);
+                flagok = true;
+            }
+
+        }
+        if (!flagok) {
+            logger.error("Tariff not found");
+        }
+    }
+
+    public void searchTariffByCostOperator(int cost, String nameOperator) {
+        //renewTariffList();
+        boolean flag = true;
+        List<Tariff> tariffListByOperator = new ArrayList<>();
+        for (MobileOperator m : mobileOperatorList) {
+            if ((m.getName().equals(nameOperator)) && flag) {
+                tariffListByOperator.addAll(mobileOperator.getTariff());
+                flag = false;
+            }
+        }
+        flag = true;
+        for (Tariff tariff : tariffListByOperator) {
+            if (tariff.getPrice() < cost) {
+                logger.info(tariff);
+                flag = false;
+            }
+        }
+        if (flag) {
+            logger.error("Tariff not found");
+        }
     }
 }
 

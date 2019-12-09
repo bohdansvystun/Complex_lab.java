@@ -1,0 +1,30 @@
+[TRACE] 2019-12-09 04:23:05.721 View:43 - Success! 
+[TRACE] 2019-12-09 04:23:07.992 View:47 - [CellPhone{name='VladV', surname='SaltanV', number=1, tariff=Black}, CellPhone{name='VladK', surname='SaltanK', number=2, tariff=ReyK}, CellPhone{name='VladK2', surname='SaltanK2', number=3, tariff=Rey}] 
+[TRACE] 2019-12-09 04:23:09.367 View:51 - [MobileOperator{name='Vodafone', client=[CellPhone{name='VladV', surname='SaltanV', number=1, tariff=Black}], tariff=[Tariff{price=45, volumeInternet=65, countMinutes=78}, Tariff{price=90, volumeInternet=90, countMinutes=90}]}, MobileOperator{name='Kiyvstar', client=[CellPhone{name='VladK', surname='SaltanK', number=2, tariff=ReyK}], tariff=[Tariff{price=45, volumeInternet=65, countMinutes=78}]}, MobileOperator{name='Vodafone', client=[CellPhone{name='VladK2', surname='SaltanK2', number=3, tariff=Rey}], tariff=[Tariff{price=45, volumeInternet=65, countMinutes=78}, Tariff{price=90, volumeInternet=90, countMinutes=90}]}] 
+[TRACE] 2019-12-09 04:23:10.922 View:55 - 3 
+[TRACE] 2019-12-09 04:24:27.066 View:43 - Success! 
+[TRACE] 2019-12-09 04:24:28.395 View:47 - [CellPhone{name='VladV', surname='SaltanV', number=1, tariff=Black}, CellPhone{name='VladK', surname='SaltanK', number=2, tariff=ReyK}, CellPhone{name='VladK2', surname='SaltanK2', number=3, tariff=Rey}] 
+[TRACE] 2019-12-09 04:25:18.738 View:43 - Success! 
+[TRACE] 2019-12-09 04:25:19.773 View:47 - [CellPhone{name='VladV', surname='SaltanV', number=1, tariff=Black}, CellPhone{name='VladK', surname='SaltanK', number=2, tariff=ReyK}, CellPhone{name='VladK2', surname='SaltanK2', number=3, tariff=Rey}] 
+[TRACE] 2019-12-09 04:25:20.522 View:51 - [MobileOperator{name='Vodafone', client=[CellPhone{name='VladV', surname='SaltanV', number=1, tariff=Black}], tariff=[Tariff{price=45, volumeInternet=65, countMinutes=78}, Tariff{price=90, volumeInternet=90, countMinutes=90}]}, MobileOperator{name='Kiyvstar', client=[CellPhone{name='VladK', surname='SaltanK', number=2, tariff=ReyK}], tariff=[Tariff{price=45, volumeInternet=65, countMinutes=78}]}, MobileOperator{name='Vodafone', client=[CellPhone{name='VladK2', surname='SaltanK2', number=3, tariff=Rey}], tariff=[Tariff{price=45, volumeInternet=65, countMinutes=78}, Tariff{price=90, volumeInternet=90, countMinutes=90}]}] 
+[TRACE] 2019-12-09 04:25:43.143 View:43 - Success! 
+[TRACE] 2019-12-09 04:25:44.118 View:47 - [CellPhone{name='VladV', surname='SaltanV', number=1, tariff=Black}, CellPhone{name='VladK', surname='SaltanK', number=2, tariff=ReyK}, CellPhone{name='VladK2', surname='SaltanK2', number=3, tariff=Rey}] 
+[TRACE] 2019-12-09 04:25:44.773 View:43 - Success! 
+[TRACE] 2019-12-09 04:26:19.800 View:43 - Success! 
+[TRACE] 2019-12-09 04:26:20.797 View:43 - Success! 
+[TRACE] 2019-12-09 04:27:34.475 View:43 - Success! 
+[TRACE] 2019-12-09 04:27:35.459 View:43 - Success! 
+[TRACE] 2019-12-09 04:29:01.354 View:47 - XYU 
+[TRACE] 2019-12-09 04:29:02.737 View:47 - XYU 
+[TRACE] 2019-12-09 04:29:03.546 View:47 - XYU 
+[TRACE] 2019-12-09 04:29:04.379 View:43 - Success! 
+[TRACE] 2019-12-09 04:29:05.091 View:47 - XYU 
+[TRACE] 2019-12-09 04:29:59.602 View:48 - XYU 
+[TRACE] 2019-12-09 04:29:59.607 View:49 - [] 
+[TRACE] 2019-12-09 04:30:01.370 View:48 - XYU 
+[TRACE] 2019-12-09 04:30:01.371 View:49 - [] 
+[TRACE] 2019-12-09 04:30:02.032 View:44 - Success! 
+[TRACE] 2019-12-09 04:30:02.734 View:48 - XYU 
+[TRACE] 2019-12-09 04:30:02.734 View:49 - [CellPhone{name='VladV', surname='SaltanV', number=1, tariff=Black}, CellPhone{name='VladK', surname='SaltanK', number=2, tariff=ReyK}, CellPhone{name='VladK2', surname='SaltanK2', number=3, tariff=Rey}] 
+[TRACE] 2019-12-09 04:31:47.159 View:44 - Success! 
+[TRACE] 2019-12-09 04:31:48.195 View:48 - XYU 

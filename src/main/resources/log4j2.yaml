@@ -13,96 +13,17 @@ Configuration:
           Pattern: "%highlight{%-5level}{FATAL=bg_red} %style{%date{yyyy-MM-dd
                     HH:mm:ss.SSS}}{blue} %class{1}:%L - %highlight{%msg} %xEx{short}%n"
 
-
-      - name: Debug_Console_Appender
-        PatternLayout:
-          Pattern: "%highlight{%-5level}{FATAL=bg_red} %style{%date{yyyy-MM-dd
-                         HH:mm:ss.SSS}}{blue} %class{1}:%L - %highlight{%msg} %xEx{short}%n"
-        Filters:
-          ThresholdFilter:
-            level: debug
-            onMatch: NEUTRAL
-            onMismatch: DENY
-
-      - name: Info_Console_Appender
-        PatternLayout:
-          Pattern: "%highlight{%-5level}{FATAL=bg_red} %style{%date{yyyy-MM-dd
-                            HH:mm:ss.SSS}}{blue} %class{1}:%L - %highlight{%msg} %xEx{short}%n"
-        Filters:
-          ThresholdFilter:
-            level: info
-            onMatch: NEUTRAL
-            onMismatch: DENY
-
-
-    #file will not be overwritten
-    File:
-      - name: rootLogFile
-        fileName: ${log-path}/rootFile.log
-        PatternLayout:
-          Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %class{1}:%L - %msg
-                    %xEx{short}%n"
-        ThresholdFilter:
-          level: error
-          onMatch: DENY
-          onMismatch: NEUTRAL
-
-      - name: WarnLogFile
-        fileName: ${log-path}/WarnFile.log
-        PatternLayout:
-          Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %class{1}:%L - %msg
-                    %xEx{short}%n"
-        ThresholdFilter:
-          level: warn
-          onMatch: NEUTRAL
-          onMismatch: DENY
-
-    RollingFile:
-      - name: rollDayFile
-        fileName: ${log-path}/rollDay.log
-        filePattern: ${log-path}/archive/rollDay-%d{yy-MM-dd}.log
-        PatternLayout:
-          Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %class{1}:%L - %msg
-                          %xEx{short}%n"
-        CronTriggeringPolicy:
-          schedule: "00 00 08 ? * *"
-          evaluateOnStartup: true1
-        DefaultRolloverStrategy:
-          max: 1
-
-      - name: rollSize
-        fileName: ${log-path}/rollSize.log
-        filePattern: ${log-path}/archive/rollSize.log.%d{yyyy-MM-dd-hh-mm}.gz
-        PatternLayout:
-          Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %class{1}:%L - %msg
-                  %xEx{short}%n"
-        Policies:
-          SizeBasedTriggeringPolicy:
-            size: 1 MB
-
-      # every day log will be written to a new file
-      - name: rollNewDayFile
-        fileName: ${log-path}/rollNewDayFile.log
-        filePattern: ${log-path}/archive/rollNewDayFile-%d{yy-MM-dd}.log
-        PatternLayout:
-          Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %class{1}:%L - %msg
-                  %xEx{short}%n"
-        Policies:
-          TimeBasedTriggeringPolicy:
-            interval: 1
-            modulate: true
-
     SMTP:
       # "ERROR" and "FATAL" will be send to the e-mail
       name: MailAppender
       subject: "Error Log"
-      to: "kitik*****@gmail.com"
-      from: "kitik*****@gmail.com"
+      to: "yourmail@gmail.com"
+      from: "yourmail@gmail.com"
       smtpHost: "smtp.gmail.com"
       smtpPort: 465
       smtpProtocol: smtps
-      smtpUsername: "kitik*****@gmail.com"
-      smtpPassword: "********"
+      smtpUsername: "yourmail@gmail.com"
+      smtpPassword: "yourpassword"
       bufferSize: 512
       HTMLLayout:
       charset: "UTF-8"
@@ -115,13 +36,19 @@ Configuration:
       AppenderRef:
         - ref: rootLogFile
           level: trace
+
     Logger:
       - name: com.Kitik.App
         level: all
         AppenderRef:
-          - ref: Info_Console_Appender
+          - ref: Console_Appender
             level: trace
-          - ref: WarnLogFile
+          - ref: MailAppender
+            level: error
+      - name: com.Kitik.view.View
+        level: all
+        AppenderRef:
+          - ref: Console_Appender
             level: trace
           - ref: MailAppender
             level: error

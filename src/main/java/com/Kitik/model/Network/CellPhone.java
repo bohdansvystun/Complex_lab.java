@@ -6,10 +6,10 @@ public class CellPhone implements Serializable {
     private String name;
     private String surname;
     private int number;
-    private Tariff tariff;
+    private String tariff;
 
 
-    public CellPhone(String name, String surname, int number, Tariff tariff) {
+    public CellPhone(String name, String surname, int number, String tariff) {
         this.name = name;
         this.surname = surname;
         this.number = number;
@@ -30,7 +30,7 @@ public class CellPhone implements Serializable {
         return number;
     }
 
-    public Tariff getTariff() {
+    public String getTariff() {
         return tariff;
     }
 

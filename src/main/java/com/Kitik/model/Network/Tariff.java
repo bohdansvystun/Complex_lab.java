@@ -2,7 +2,7 @@ package com.Kitik.model.Network;
 
 import java.io.Serializable;
 
-public class Tariff implements Serializable {
+public class Tariff {
     private String nameTariff;
     private int price;
     private int volumeInternet;
@@ -50,7 +50,8 @@ public class Tariff implements Serializable {
     @Override
     public String toString() {
         return "Tariff{" +
-                "price=" + price +
+                "nameTariff='" + nameTariff + '\'' +
+                ", price=" + price +
                 ", volumeInternet=" + volumeInternet +
                 ", countMinutes=" + countMinutes +
                 '}';
