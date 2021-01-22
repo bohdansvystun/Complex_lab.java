@@ -1,7 +1,7 @@
-package com.Kitik.view;
+package com.svystun.view;
 
-import com.Kitik.model.Network.*;
-import com.Kitik.controller.Controller;
+import com.svystun.model.Network.*;
+import com.svystun.controller.Controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.*;
@@ -39,8 +39,6 @@ public class View {
         methodsMenu.put("7", this::pressButton7);
         methodsMenu.put("8", this::pressButton8);
         methodsMenu.put("9", this::pressButton9);
-
-
     }
 
     private void pressButton1() {
@@ -57,14 +55,16 @@ public class View {
 
     private void pressButton4() throws MyException {
         logger.info(controller.showCountClient());
-
     }
 
     private void pressButton5() {
+        logger.trace("Enter name operator");
         String name = input.nextLine();
         logger.info(controller.showCountClientInMobileOperator(name));
+
     }
     private void pressButton6() {
+        logger.trace("Enter name operator");
         String name = input.nextLine();
         controller.showMobileOperatorByName(name);
     }
@@ -73,7 +73,6 @@ public class View {
         logger.trace("Enter name operator");
         String name = input.nextLine();
         logger.info(controller.sortByCostOperator(name));
-
     }
 
     private void pressButton8() {
@@ -103,9 +102,6 @@ public class View {
         mobileOperator = new MobileOperator(nameOperator,cellPhoneList);
         logger.info(controller.writeToTheFile(mobileOperator));
         }
-
-
-
 
     public final void show() {
         String keyMenu;

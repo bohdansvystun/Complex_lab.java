@@ -1,4 +1,4 @@
-package com.Kitik.model.Network;
+package com.svystun.model.Network;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.List;
 public class GetFromFile implements Serializable {
 
     private final List<MobileOperator> list;
-
 
     public final List<MobileOperator> getForFile() {
         return list;
@@ -16,3 +15,28 @@ public class GetFromFile implements Serializable {
         this.list = listParam;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

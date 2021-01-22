@@ -1,9 +1,9 @@
-package com.Kitik.controller;
+package com.svystun.controller;
 
-import com.Kitik.model.Model;
-import com.Kitik.model.Network.CellPhone;
-import com.Kitik.model.Network.MobileOperator;
-import com.Kitik.model.Network.Tariff;
+import com.svystun.model.Model;
+import com.svystun.model.Network.CellPhone;
+import com.svystun.model.Network.MobileOperator;
+import com.svystun.model.Network.Tariff;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,13 +49,10 @@ public class Controller {
         return model.sortByCostOperator(name);
     }
 
-
     public final List<Tariff> showTariff(){
         return model.returnAllTariff();
     }
     public final void searchTariff(int cost, String name) {
-        //model.searchTariffByCost(cost);
-        //System.out.println(" ");
         model.searchTariffByCostOperator(cost, name);
     }
 }

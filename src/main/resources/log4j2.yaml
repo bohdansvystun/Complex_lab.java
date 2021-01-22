@@ -1,5 +1,5 @@
 Configuration:
-  packages: "com.Kitik"
+  packages: "com.Asscorbin"
   name: Log4j2_Config
   properties:
     property:
@@ -38,14 +38,14 @@ Configuration:
           level: trace
 
     Logger:
-      - name: com.Kitik.App
+      - name: com.Asscorbin.App
         level: all
         AppenderRef:
           - ref: Console_Appender
             level: trace
           - ref: MailAppender
             level: error
-      - name: com.Kitik.view.View
+      - name: com.Asscorbin.view.View
         level: all
         AppenderRef:
           - ref: Console_Appender

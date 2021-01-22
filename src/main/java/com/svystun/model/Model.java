@@ -1,16 +1,16 @@
-package com.Kitik.model;
+package com.svystun.model;
 
-import com.Kitik.model.Network.CellPhone;
-import com.Kitik.model.Network.GetFromFile;
-import com.Kitik.model.Network.MobileOperator;
-import com.Kitik.model.Network.Tariff;
-import com.Kitik.view.View;
+import com.svystun.model.Network.CellPhone;
+import com.svystun.model.Network.GetFromFile;
+import com.svystun.model.Network.MobileOperator;
+import com.svystun.model.Network.Tariff;
+import com.svystun.view.View;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public class Model {
     private List<MobileOperator> mobileOperatorList;
@@ -30,7 +30,7 @@ public class Model {
     public final String getFromFile() {
         try {
             FileInputStream fin = new FileInputStream(
-                    "C:\\Users\\MyFantasy\\IdeaProjects\\Kolya_Task\\data.txt");
+                    "C:\\Users\\Bogdan\\IdeaProjects\\Complex\\data.txt");
             ObjectInputStream ois = new ObjectInputStream(fin);
             GetFromFile get = (GetFromFile) ois.readObject();
             mobileOperatorList = get.getForFile();
@@ -58,23 +58,18 @@ public class Model {
 
     public final String writeToTheFile(MobileOperator mobileOperator) {
         try {
-            //mobileOperatorList.add(mobileOperator);
-
             int count = 0;
-
             for (MobileOperator m : mobileOperatorList) {
                 if (m.getName().equals(mobileOperator.getName())) {
                     m.addClient(mobileOperator.getClient());
                     count++;
                 }
             }
-
-
             if (count == 0) {
                 mobileOperatorList.add(mobileOperator);
             }
             FileOutputStream fo = new FileOutputStream(
-                    "C:\\Users\\MyFantasy\\IdeaProjects\\Kolya_Task\\data.txt");
+                    "C:\\Users\\Bogdan\\IdeaProjects\\Complex\\data.txt");
             GetFromFile get = new GetFromFile(mobileOperatorList);
             ObjectOutputStream serial = new ObjectOutputStream(fo);
             serial.writeObject(get);
@@ -121,7 +116,7 @@ public class Model {
         int count = 0;
         for (MobileOperator m : mobileOperatorList) {
             if (m.getName().equals(nameMobileOpeator)) {
-                count =m.getClient().size();
+                count = m.getClient().size();
             }
         }
 
@@ -147,46 +142,20 @@ public class Model {
         return tariffList;
     }
 
-/*
-    public final void sortByCost() {
-        Collections.sort(tariffList = returnAllTariff(), new Comparator<Tariff>() {
+    public final List<Tariff> sortByCostOperator(String nameOperator) {
+        List<Tariff> tariffListByOperator = returnTariffbyOperator(nameOperator);
+        Collections.sort(tariffListByOperator, new Comparator<Tariff>() {
+
             @Override
+
             public int compare(final Tariff lhs, final Tariff rhs) {
                 return lhs.getPrice() > rhs.getPrice() ? -1
                         : (lhs.getPrice() < rhs.getPrice()) ? 1 : 0;
             }
         });
-    }
-*/
-
-    public final List<Tariff> sortByCostOperator(String nameOperator) {
-        List<Tariff> tariffListByOperator = returnTariffbyOperator(nameOperator);
-            Collections.sort(tariffListByOperator, new Comparator<Tariff>() {
-                @Override
-                public int compare(final Tariff lhs, final Tariff rhs) {
-                    return lhs.getPrice() > rhs.getPrice() ? -1
-                            : (lhs.getPrice() < rhs.getPrice()) ? 1 : 0;
-                }
-            });
         return tariffListByOperator;
     }
 
-    /*
-        public void searchTariffByCost(int cost) {
-            boolean flag = true;
-            boolean flagok = false;
-            tariffList = returnAllTariff();
-            for (Tariff tariff : tariffList) {
-                if ((tariff.getPrice() < cost)) {
-                    logger.info(tariff);
-                    flagok = true;
-                }
-            }
-            if (!flagok) {
-                logger.error("Tariff not found");
-            }
-        }
-        */
     public void searchTariffByCostOperator(int cost, String nameOperator) {
         boolean flag = true;
         List<Tariff> tariffListByOperator = returnTariffbyOperator(nameOperator);

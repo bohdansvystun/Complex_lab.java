@@ -1,6 +1,5 @@
-package com.Kitik.model.Network;
+package com.svystun.model.Network;
 
-import java.awt.*;
 import java.io.*;
 import java.util.*;
 import java.util.List;
@@ -17,7 +16,6 @@ public class MobileOperator implements Serializable {
         this.client = client;
         readTariffFromFile();
     }
-
 
     public String getName() {
         return name;
@@ -49,7 +47,7 @@ public class MobileOperator implements Serializable {
 
     public void readTariffFromFile() {
         tariff = new ArrayList<>();
-        String path = "C:\\Users\\MyFantasy\\IdeaProjects\\Kolya_Task\\" + name + ".txt";
+        String path = "C:\\Users\\Bogdan\\IdeaProjects\\Complex\\" + name + ".txt";
         try {
             FileReader fr = new FileReader(path);
             Scanner scan = new Scanner(fr);

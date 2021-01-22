@@ -1,6 +1,4 @@
-package com.Kitik.model.Network;
-
-import java.io.Serializable;
+package com.svystun.model.Network;
 
 public class Tariff {
     private String nameTariff;

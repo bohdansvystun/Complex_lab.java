@@ -1,4 +1,4 @@
-package com.Kitik.model.Network;
+package com.svystun.model.Network;
 
 import java.io.Serializable;
 
@@ -15,9 +15,6 @@ public class CellPhone implements Serializable {
         this.number = number;
         this.tariff = tariff;
     }
-
-
-
     public String getName() {
         return name;
     }

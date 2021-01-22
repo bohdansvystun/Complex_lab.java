@@ -1,4 +1,4 @@
-package com.Kitik.model.Network;
+package com.svystun.model.Network;
 
 public class MyException extends Exception {
     public String InvalidCountOfClients() {
@@ -6,3 +6,33 @@ public class MyException extends Exception {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
